@@ -1,14 +1,13 @@
-# NixOS / Nix-Darwin's Submodules
+# NixOS Submodules
 
-This directory contains modular NixOS and Nix-Darwin configurations organized by platform and
-functionality.
+This directory contains modular NixOS configurations organized by platform and functionality.
 
 ## Current Structure
 
 ```
 modules/
 ├── README.md
-├── base/                    # Common configuration for all platforms
+├── base/                    # Common configuration
 │   ├── default.nix
 │   ├── fonts.nix           # System font configuration
 │   ├── nix.nix            # Nix package manager settings
@@ -16,16 +15,6 @@ modules/
 │   ├── security.nix       # Basic security settings
 │   ├── system-packages.nix # Essential system packages
 │   └── users.nix          # User management
-├── darwin/                  # macOS-specific modules
-│   ├── README.md
-│   ├── apps.nix           # macOS applications
-│   ├── broken-packages.nix # Package compatibility fixes
-│   ├── default.nix
-│   ├── nix-core.nix       # Core Nix configuration
-│   ├── security.nix       # macOS security settings
-│   ├── ssh.nix           # SSH configuration
-│   ├── system.nix        # System-level settings
-│   └── users.nix         # macOS user management
 └── nixos/                   # NixOS-specific modules
     ├── base/               # Base NixOS configuration
     │   ├── btrbk.nix      # Backup configuration
@@ -67,7 +56,7 @@ modules/
 
 ### 1. **Base Modules** (`base/`)
 
-Common configuration shared between NixOS and macOS:
+Common configuration shared across systems:
 
 - System fonts and localization
 - Essential packages and tools
@@ -75,16 +64,7 @@ Common configuration shared between NixOS and macOS:
 - User management
 - Package overlays
 
-### 2. **macOS Modules** (`darwin/`)
-
-macOS-specific configuration:
-
-- macOS applications and system settings
-- Security configurations tailored for macOS
-- SSH and system-level settings
-- Package compatibility fixes
-
-### 3. **NixOS Modules** (`nixos/`)
+### 2. **NixOS Modules** (`nixos/`)
 
 Platform-specific NixOS configuration:
 
@@ -94,15 +74,13 @@ Platform-specific NixOS configuration:
 
 ## Usage
 
-Modules are imported based on platform detection:
+Modules are imported based on functionality:
 
 - **NixOS Systems**: Import `nixos/` modules
-- **macOS Systems**: Import `darwin/` modules
 - **All Systems**: Import `base/` modules for shared configuration
 
 ## Architecture Support
 
 - **x86_64-linux**: Desktop and server configurations
 - **aarch64-linux**: ARM64 Linux systems
-- **aarch64-darwin**: Apple Silicon macOS systems
 - **server-riscv64**: RISC-V server configurations

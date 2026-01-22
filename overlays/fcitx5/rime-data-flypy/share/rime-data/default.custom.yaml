@@ -1,5 +1,5 @@
 customization:
-  distribution_code_name: Squirrel
+  distribution_code_name: Fcitx5
   distribution_version: 2019-06-23
   rime_version: 1.5.3
 patch:
@@ -8,7 +8,6 @@ patch:
 
   #
   # 可用的按键有 Caps_Lock, Shift_L, Shift_R, Control_L, control_R
-  # Mac 系统上的鼠须管不能区分左、右，因此只有对 Shift_L, Control_L 的设定起作用
   #
   # 已输入编码时按切换键，可以进一步设定输入法中西文切换的形式
   # 可选的临时切换策略有三：

@@ -8,22 +8,20 @@ easier to add new machines.
 ### Core System Generators
 
 1. **`attrs.nix`** - Attribute set manipulation utilities
-2. **`macosSystem.nix`** - macOS configuration generator for
-   [nix-darwin](https://github.com/LnL7/nix-darwin)
-3. **`nixosSystem.nix`** - NixOS configuration generator
-4. **`colmenaSystem.nix`** - Remote deployment configuration for
+2. **`nixosSystem.nix`** - NixOS configuration generator
+3. **`colmenaSystem.nix`** - Remote deployment configuration for
    [colmena](https://github.com/zhaofengli/colmena)
 
 ### Specialized Module Generators
 
-5. **`genK3sAgentModule.nix`** - K3s agent node configuration generator
-6. **`genK3sServerModule.nix`** - K3s server node configuration generator
-7. **`genKubeVirtGuestModule.nix`** - KubeVirt guest VM configuration generator
-8. **`genKubeVirtHostModule.nix`** - KubeVirt host configuration generator
+4. **`genK3sAgentModule.nix`** - K3s agent node configuration generator
+5. **`genK3sServerModule.nix`** - K3s server node configuration generator
+6. **`genKubeVirtGuestModule.nix`** - KubeVirt guest VM configuration generator
+7. **`genKubeVirtHostModule.nix`** - KubeVirt host configuration generator
 
 ### Entry Point
 
-9. **`default.nix`** - Main entry point that imports all functions and exports them as a single
+8. **`default.nix`** - Main entry point that imports all functions and exports them as a single
    attribute set
 
 ## Usage
@@ -38,5 +36,4 @@ These functions are designed to:
 ## Architecture Support
 
 - **x86_64-linux**: Primary desktop systems
-- **aarch64-linux**: ARM64 Linux systems (Apple Silicon, SBCs)
-- **aarch64-darwin**: Apple Silicon macOS systems
+- **aarch64-linux**: ARM64 Linux systems (SBCs)

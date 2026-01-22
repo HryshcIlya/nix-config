@@ -32,7 +32,7 @@ Related projects & docs:
 
 Eval Tests evaluate the expressions and compare the results with the expected results. It runs fast,
 but it doesn't build a real machine. We use eval tests to ensure that some attributes are correctly
-set for each NixOS host(not Darwin).
+set for each NixOS host.
 
 How to run all the eval tests:
 
@@ -73,40 +73,30 @@ All the outputs of this flake are defined here.
 .
 ├── default.nix       # The entry point, all the outputs are composed here.
 ├── README.md
-├── aarch64-darwin    # All outputs for macOS Apple Silicon
-│   ├── default.nix
-│   └── src           # every host has its own file in this directory
-│       ├── frieren.nix
-│       └── fern.nix
-├── aarch64-linux     # All outputs for Linux ARM64
-│   ├── default.nix
-│   ├── src           # every host has its own file in this directory
-│   │   ├── 12kingdoms-shoukei.nix
-│   └── tests         # eval tests
 └── x86_64-linux      # All outputs for Linux x86_64
     ├── default.nix
     ├── nixos-tests
     ├── src           # every host has its own file in this directory
-    │   ├── idols-ai.nix
-    │   ├── idols-aquamarine.nix
-    │   ├── idols-kana.nix
-    │   ├── idols-ruby.nix
-    │   ├── k3s-prod-1-master-1.nix
-    │   ├── k3s-prod-1-master-2.nix
-    │   ├── k3s-prod-1-master-3.nix
-    │   ├── k3s-prod-1-worker-1.nix
-    │   ├── k3s-prod-1-worker-2.nix
-    │   ├── k3s-prod-1-worker-3.nix
-    │   ├── kubevirt-shoryu.nix
-    │   ├── kubevirt-shushou.nix
-    │   └── kubevirt-youko.nix
+    │   ├── idols-ai.nix
+    │   ├── idols-aquamarine.nix
+    │   ├── idols-kana.nix
+    │   ├── idols-ruby.nix
+    │   ├── k3s-prod-1-master-1.nix
+    │   ├── k3s-prod-1-master-2.nix
+    │   ├── k3s-prod-1-master-3.nix
+    │   ├── k3s-prod-1-worker-1.nix
+    │   ├── k3s-prod-1-worker-2.nix
+    │   ├── k3s-prod-1-worker-3.nix
+    │   ├── kubevirt-shoryu.nix
+    │   ├── kubevirt-shushou.nix
+    │   └── kubevirt-youko.nix
     └── tests         # eval tests
         ├── home-manager
-        │   ├── expected.nix
-        │   └── expr.nix
+        │   ├── expected.nix
+        │   └── expr.nix
         ├── hostname
-        │   ├── expected.nix
-        │   └── expr.nix
+        │   ├── expected.nix
+        │   └── expr.nix
         └── kernel
             ├── expected.nix
             └── expr.nix

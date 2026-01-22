@@ -32,39 +32,6 @@ export def make-editable [
 }
 
 
-# ================= macOS related =========================
-
-export def darwin-build [
-    name: string
-    mode: string
-] {
-    print $"darwin-build '($name)' in '($mode)' mode..."
-    print (repeat-str "=" 50)
-    let target = $".#darwinConfigurations.($name).system"
-    if "debug" == $mode {
-        nom build $target --extra-experimental-features "nix-command flakes"  --show-trace --verbose
-    } else {
-        nix build $target --extra-experimental-features "nix-command flakes"
-    }
-}
-
-export def darwin-switch [
-    name: string
-    mode: string
-] {
-    print $"darwin-switch '($name)' in '($mode)' mode..."
-    print (repeat-str "=" 50)
-    if "debug" == $mode {
-        sudo -E ./result/sw/bin/darwin-rebuild switch --flake $".#($name)" --show-trace --verbose
-    } else {
-        sudo -E ./result/sw/bin/darwin-rebuild switch --flake $".#($name)"
-    }
-}
-
-export def darwin-rollback [] {
-    ./result/sw/bin/darwin-rebuild --rollback
-}
-
 # ==================== Virtual Machines related =====================
 
 # Build and upload a VM image

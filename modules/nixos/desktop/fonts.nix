@@ -6,7 +6,7 @@
     enableDefaultPackages = false;
     fontDir.enable = true;
 
-    # fonts are defined in /modules/base/fonts.nix, used by both NixOS & Darwin.
+    # fonts are defined in /modules/base/fonts.nix
     # packages = [ ... ];
 
     fontconfig = {

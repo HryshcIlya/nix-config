@@ -26,15 +26,11 @@ home/
 │   │   └── ...
 │   ├── editors/       # Linux-specific editors
 │   └── ...
-└── darwin/            # macOS-specific home manager configurations
-    ├── aerospace/     # macOS window manager
-    ├── proxy/         # Proxy configurations
-    └── ...
 ```
 
 ## Module Overview
 
-1. **base**: The base module suitable for both Linux and macOS
+1. **base**: The base module suitable for all systems
    - Cross-platform applications and settings
    - Shared configurations for editors, shells, and essential tools
 
@@ -42,7 +38,3 @@ home/
    - Desktop environments (Noctalia Shell, Niri compositor)
    - Linux-specific GUI applications
    - System integration tools
-
-3. **darwin**: macOS-specific configuration
-   - macOS applications and services
-   - Platform-specific integrations (Aerospace, Squirrel, etc.)

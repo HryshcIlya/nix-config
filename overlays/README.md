@@ -1,6 +1,6 @@
 # Overlays
 
-Overlays for both NixOS and Nix-Darwin.
+Overlays for NixOS configuration.
 
 If you don't know much about overlays, it is recommended to learn the function and usage of overlays
 through [Overlays - NixOS & Flakes Book](https://nixos-and-flakes.thiscute.world/nixpkgs/overlays).
@@ -27,9 +27,7 @@ overlays/
                 ├── flypy_user.txt
                 ├── lua/
                 │   └── calculator_translator.lua
-                ├── rime.lua
-                ├── squirrel.custom.yaml
-                └── squirrel.yaml
+                └── rime.lua
 ```
 
 ## Components
@@ -46,5 +44,4 @@ fcitx5's overlay, add my customized Chinese input method - [小鹤音形输入�
 This overlay provides:
 
 - Custom rime data for 小鹤音形输入法 (Flypy input method)
-- Cross-platform support for both Linux (fcitx5-rime) and macOS (squirrel)
 - Pre-configured input method settings

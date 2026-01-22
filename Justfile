@@ -45,7 +45,6 @@ repl:
   nix repl -f flake:nixpkgs
 
 # remove all generations older than 7 days
-# on darwin, you may need to switch to root user to run this command
 [group('nix')]
 clean:
   # Wipe out NixOS's history
@@ -63,16 +62,9 @@ gc:
   nix-collect-garbage --delete-older-than 7d
 
 # Enter a shell session which has all the necessary tools for this flake
-[linux]
 [group('nix')]
 shell:
   nix shell nixpkgs#git nixpkgs#neovim nixpkgs#colmena
-
-# Enter a shell session which has all the necessary tools for this flake
-[macos]
-[group('nix')]
-shell:
-  nix shell nixpkgs#git nixpkgs#neovim
 
 [group('nix')]
 fmt:
@@ -100,7 +92,7 @@ repair-store *paths:
 # Update all Nixpkgs inputs
 [group('nix')]
 up-nix:
-  nix flake update --commit-lock-file nixpkgs-stable nixpkgs-master nixpkgs-darwin nixpkgs-patched
+  nix flake update --commit-lock-file nixpkgs-stable nixpkgs-master nixpkgs-patched
 
 # override nixpkgs's commit hash
 [group('nix')]
@@ -128,42 +120,6 @@ niri mode="default":
   #!/usr/bin/env nu
   use {{utils_nu}} *;
   nixos-switch $"(hostname)-niri" {{mode}}
-
-############################################################################
-#
-#  Darwin related commands
-#
-############################################################################
-
-[macos]
-[group('desktop')]
-darwin-set-proxy:
-  sudo python3 scripts/darwin_set_proxy.py
-  sleep 1sec
-
-[macos]
-[group('desktop')]
-darwin-rollback:
-  #!/usr/bin/env nu
-  use {{utils_nu}} *;
-  darwin-rollback
-
-# Deploy the darwinConfiguration by hostname match
-[macos]
-[group('desktop')]
-local mode="default": 
-  #!/usr/bin/env nu
-  use {{utils_nu}} *;
-  darwin-build (hostname) {{mode}};
-  darwin-switch (hostname) {{mode}}
-
-
-# Reset launchpad to force it to reindex Applications
-[macos]
-[group('desktop')]
-reset-launchpad:
-  defaults write com.apple.dock ResetLaunchPad -bool true
-  killall Dock
 
 ############################################################################
 #

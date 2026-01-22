@@ -1,6 +1,6 @@
 # rime-data for flypy input method
 
-Useful for Linux(fcitx5-rime) & macOS(squirrel).
+Useful for Linux(fcitx5-rime).
 
 ## Linux(fcitx5-rime)
 
@@ -8,11 +8,6 @@ Useful for Linux(fcitx5-rime) & macOS(squirrel).
    [home/linux/gui/base/fcitx5/profile](/home/linux/gui/base/fcitx5/profile), which hardcode rime as
    the default input method, so you do not need to use fcitx-configtool to adjust fcitx5's input
    method.
-
-## macOS(squirrel)
-
-1. ` ~/Library/Rime/` is force linked to this rime-data, see
-   [home/darwin/rime-squirrel.nix](/home/darwin/rime-squirrel.nix) for details.
 
 ## Docs about fcitx5
 

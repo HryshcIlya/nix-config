@@ -45,9 +45,9 @@ just nvim-test
 just nvim-clear
 ```
 
-## Cheetsheet
+## Cheatsheet
 
-Here is the cheetsheet related to my Neovim configs. Please read vim's common cheetsheet at
+Here is the cheatsheet related to my Neovim configs. Please read vim's common cheatsheet at
 [../README.md](../README.md) before reading the following.
 
 ### Incremental Selection
@@ -91,8 +91,6 @@ plugin.
 
 - Switch between windows: `<Ctrl> + h/j/k/l`
 - Resize windows: `<Ctrl> + Up/Down/Left/Right` (`<Ctrl-w> + -/+/</>`)
-  - Note: On macOS, conflicts with system shortcuts
-  - Disable in System Preferences -> Keyboard -> Shortcuts -> Mission Control
 
 ### Splitting and Buffers
 

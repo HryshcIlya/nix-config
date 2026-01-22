@@ -54,8 +54,6 @@ NixOS preserve the `TERMINFO` and `TERMINFO_DIRS` environment variables, for `ro
 group:
 [nixpkgs/nixos/modules/config/terminfo.nix](https://github.com/NixOS/nixpkgs/blob/nixos-25.11/nixos/modules/config/terminfo.nix#L18)
 
-For nix-darwin, take a look at <https://github.com/LnL7/nix-darwin/wiki/Terminfo-issues>
-
 ### Solutions
 
 Simplest solution, it will automatically copy over the terminfo files and also magically enable

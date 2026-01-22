@@ -10,7 +10,7 @@ let
   myvars = import ../vars { inherit lib; };
 
   # Add my custom lib, vars, nixpkgs instance, and all the inputs to specialArgs,
-  # so that I can use them in all my nixos/home-manager/darwin modules.
+  # so that I can use them in all my nixos/home-manager modules.
   genSpecialArgs =
     system:
     inputs
@@ -66,17 +66,12 @@ let
   # modules for each supported system
   nixosSystems = {
     x86_64-linux = import ./x86_64-linux (args // { system = "x86_64-linux"; });
-    aarch64-linux = import ./aarch64-linux (args // { system = "aarch64-linux"; });
     # riscv64-linux = import ./riscv64-linux (args // {system = "riscv64-linux";});
   };
-  darwinSystems = {
-    aarch64-darwin = import ./aarch64-darwin (args // { system = "aarch64-darwin"; });
-  };
-  allSystems = nixosSystems // darwinSystems;
+  allSystems = nixosSystems;
   allSystemNames = builtins.attrNames allSystems;
   nixosSystemValues = builtins.attrValues nixosSystems;
-  darwinSystemValues = builtins.attrValues darwinSystems;
-  allSystemValues = nixosSystemValues ++ darwinSystemValues;
+  allSystemValues = nixosSystemValues;
 
   # Helper function to generate a set of attributes for each system
   forAllSystems = func: (nixpkgs.lib.genAttrs allSystemNames func);
@@ -86,7 +81,6 @@ in
   debugAttrs = {
     inherit
       nixosSystems
-      darwinSystems
       allSystems
       allSystemNames
       ;
@@ -122,15 +116,10 @@ in
   }
   // lib.attrsets.mergeAttrsList (map (it: it.colmena or { }) nixosSystemValues);
 
-  # macOS Hosts
-  darwinConfigurations = lib.attrsets.mergeAttrsList (
-    map (it: it.darwinConfigurations or { }) darwinSystemValues
-  );
-
   # Packages
   packages = forAllSystems (system: allSystems.${system}.packages or { });
 
-  # Eval Tests for all NixOS & darwin systems.
+  # Eval Tests for all NixOS systems.
   evalTests = lib.lists.all (it: it.evalTests == { }) allSystemValues;
 
   checks = forAllSystems (system: {
