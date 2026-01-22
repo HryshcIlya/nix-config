@@ -33,7 +33,6 @@ modules/
         ├── fhs.nix        # FHS environment
         ├── fonts.nix      # Desktop fonts
         ├── gaming.nix     # Gaming configuration
-        ├── guix.nix       # GNU Guix integration
         ├── misc.nix       # Miscellaneous desktop settings
         ├── networking/    # Network-related desktop configs
         │   ├── clash-verge.nix
