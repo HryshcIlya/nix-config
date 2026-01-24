@@ -38,12 +38,6 @@
     # https://hydra.nixos.org/jobset/nixpkgs/unstable
     # update via nix flake update nixpkgs --override-input nixpkgs github:NixOS/nixpkgs/<commit-hash>
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-2505.url = "github:nixos/nixpkgs/nixos-25.05";
-
-    # nixpkgs with some custom patches
-    nixpkgs-patched.url = "github:ryan4yin/nixpkgs/nixos-unstable-patched";
-    # get some latest packages from the master branch
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     # home-manager, used for managing user configuration
@@ -137,7 +131,7 @@
     ########################  Some non-flake repositories  #########################################
 
     nu_scripts = {
-      url = "github:ryan4yin/nu_scripts";
+      url = "github:nushell/nu_scripts";
       flake = false;
     };
 
@@ -154,11 +148,6 @@
     wallpapers = {
       url = "github:ryan4yin/wallpapers";
       flake = false;
-    };
-
-    nur-ryan4yin = {
-      url = "github:ryan4yin/nur-packages";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # for waydroid

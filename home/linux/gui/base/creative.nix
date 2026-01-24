@@ -37,7 +37,6 @@
       # yosys # fpga synthesis
       # nextpnr # fpga place and route
       # openfpgaloader # fpga programming
-      # nur-ryan4yin.packages.${pkgs.stdenv.hostPlatform.system}.gowin-eda-edu-ide # app: `gowin-env` => `gw_ide` / `gw_pack` / ...
     ]);
 
   programs = {

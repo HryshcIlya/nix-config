@@ -605,22 +605,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-2505": {
-      "locked": {
-        "lastModified": 1767313136,
-        "narHash": "sha256-16KkgfdYqjaeRGBaYsNrhPRRENs0qzkQVUooNHtoy2w=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "ac62194c3917d5f474c1a844b6fd6da2db95077d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-25.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1765674936,
@@ -648,38 +632,6 @@
       "original": {
         "owner": "nixos",
         "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-patched": {
-      "locked": {
-        "lastModified": 1767514635,
-        "narHash": "sha256-uIZvxuyjwKJkcGFD/DEdmHuwjyjwkk6SkkR/5Z/cpdw=",
-        "owner": "ryan4yin",
-        "repo": "nixpkgs",
-        "rev": "fd9662e1991b624a72e5e545963136906c5c1adf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ryan4yin",
-        "ref": "nixos-unstable-patched",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-stable": {
-      "locked": {
-        "lastModified": 1768621446,
-        "narHash": "sha256-6YwHV1cjv6arXdF/PQc365h1j+Qje3Pydk501Rm4Q+4=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "72ac591e737060deab2b86d6952babd1f896d7c5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-25.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -732,15 +684,15 @@
     "nu_scripts": {
       "flake": false,
       "locked": {
-        "lastModified": 1762863367,
-        "narHash": "sha256-oxnXzxQkNccCs36j+aMzg4QGHDcX7niJruqxCkeg0LM=",
-        "owner": "ryan4yin",
+        "lastModified": 1769199499,
+        "narHash": "sha256-LPwe0DS7rNFY6MUcfCCqMYJjPkhHQyBmy4M+KjrNz34=",
+        "owner": "nushell",
         "repo": "nu_scripts",
-        "rev": "ff8092707054ad091d67bd408374a39977e33c1b",
+        "rev": "e65d76cd14979937ee378d56fc21f4e72f21cecc",
         "type": "github"
       },
       "original": {
-        "owner": "ryan4yin",
+        "owner": "nushell",
         "repo": "nu_scripts",
         "type": "github"
       }
@@ -763,26 +715,6 @@
       "original": {
         "owner": "DeterminateSystems",
         "repo": "nuenv",
-        "type": "github"
-      }
-    },
-    "nur-ryan4yin": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1765716208,
-        "narHash": "sha256-23X12PirpI3HhJZVm2Z/9BTbEHlXjJxizB6Mot7qeLU=",
-        "owner": "ryan4yin",
-        "repo": "nur-packages",
-        "rev": "420e007374a83784ce915f0d0bffd670f302ee1b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ryan4yin",
-        "repo": "nur-packages",
         "type": "github"
       }
     },
@@ -865,13 +797,9 @@
         "nix-gaming": "nix-gaming",
         "nixpak": "nixpak",
         "nixpkgs": "nixpkgs_4",
-        "nixpkgs-2505": "nixpkgs-2505",
         "nixpkgs-master": "nixpkgs-master",
-        "nixpkgs-patched": "nixpkgs-patched",
-        "nixpkgs-stable": "nixpkgs-stable",
         "nu_scripts": "nu_scripts",
         "nuenv": "nuenv",
-        "nur-ryan4yin": "nur-ryan4yin",
         "pre-commit-hooks": "pre-commit-hooks",
         "preservation": "preservation",
         "wallpapers": "wallpapers"
