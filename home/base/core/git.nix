@@ -29,9 +29,9 @@
     hosts = {
       "github.com" = {
         "users" = {
-          "ryan4yin" = null;
+          "HryshcIlya" = null;
         };
-        "user" = "ryan4yin";
+        "user" = "HryshcIlya";
       };
     };
   };
@@ -40,10 +40,10 @@
     enable = true;
     lfs.enable = true;
 
-    # signing = {
-    #   key = "xxx";
-    #   signByDefault = true;
-    # };
+    signing = {
+      key = "${config.home.homeDirectory}/.ssh/ai.pub";
+      signByDefault = true;
+    };
 
     includes = [
       {
@@ -62,6 +62,8 @@
       user.name = myvars.userfullname;
 
       init.defaultBranch = "main";
+      gpg.format = "ssh";
+      rebase.gpgsign = true;
       trim.bases = "develop,master,main"; # for git-trim
       push.autoSetupRemote = true;
       pull.rebase = true;
@@ -69,8 +71,8 @@
 
       # replace https with ssh
       url = {
-        "ssh://git@github.com/ryan4yin" = {
-          insteadOf = "https://github.com/ryan4yin";
+        "ssh://git@github.com/HryshcIlya" = {
+          insteadOf = "https://github.com/HryshcIlya";
         };
         # "ssh://git@bitbucket.com/ryan4yin" = {
         #   insteadOf = "https://bitbucket.com/ryan4yin";
