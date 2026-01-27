@@ -13,26 +13,6 @@
       source /etc/agenix/alias-for-work.nushell
 
       $env.CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"
-      # using claude-code with kimi k2
-      # https://platform.moonshot.cn/docs/guide/agent-support
-      # $env.ANTHROPIC_BASE_URL = "https://api.moonshot.cn/anthropic/"
-      # $env.ANTHROPIC_AUTH_TOKEN = $env.MOONSHOT_API_KEY
-      # $env.ANTHROPIC_MODEL = "kimi-k2-thinking"
-      # $env.ANTHROPIC_DEFAULT_HAIKU_MODEL = "kimi-k2-thinking-turbo"
-
-      # using claude-code with glm llm
-      # https://docs.bigmodel.cn/cn/coding-plan/tool/claude
-      $env.ANTHROPIC_BASE_URL = "https://open.bigmodel.cn/api/anthropic"
-      $env.ANTHROPIC_AUTH_TOKEN = $env.ZAI_API_KEY
-      $env.ANTHROPIC_MODEL = "glm-4.7"
-      $env.ANTHROPIC_DEFAULT_HAIKU_MODEL = "glm-4.5-air"
-
-      # using claude-code with qwen llm
-      # https://bailian.console.aliyun.com/?tab=doc#/doc/?type=model&url=2949529
-      # $env.ANTHROPIC_BASE_URL = "https://dashscope.aliyuncs.com/apps/anthropic"
-      # $env.ANTHROPIC_AUTH_TOKEN = $env.DASHSCOPE_API_KEY
-      # $env.ANTHROPIC_MODEL = "qwen-plus" # 千万别用 qwen-max, 价格
-      # $env.ANTHROPIC_DEFAULT_HAIKU_MODEL = "qwen-turbo"
 
       # Directories in this constant are searched by the
       # `use` and `source` commands.
