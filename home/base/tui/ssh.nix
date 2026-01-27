@@ -1,8 +1,4 @@
-{
-  config,
-  mysecrets,
-  ...
-}:
+{ ... }:
 {
   programs.ssh = {
     enable = true;

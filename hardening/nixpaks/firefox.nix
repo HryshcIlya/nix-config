@@ -56,12 +56,6 @@ let
               "/app/etc/firefox"
             ]
 
-            # ================ for browserpass extension ===============================
-            "/etc/gnupg"
-            (sloth.concat' sloth.homeDir "/.gnupg") # gpg's config
-            (sloth.concat' sloth.homeDir "/.local/share/password-store") # my secrets
-            (sloth.concat' sloth.runtimeDir "/gnupg") # for access gpg-agent socket
-
             # Unsure
             (sloth.concat' sloth.xdgConfigHome "/dconf")
           ];

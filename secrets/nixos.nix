@@ -11,14 +11,6 @@ with lib;
 let
   cfg = config.modules.secrets;
 
-  noaccess = {
-    mode = "0000";
-    owner = "root";
-  };
-  high_security = {
-    mode = "0500";
-    owner = "root";
-  };
   user_readable = {
     mode = "0500";
     owner = myvars.username;
@@ -66,31 +58,6 @@ in
 
     {
       age.secrets = {
-        # ---------------------------------------------
-        # no one can read/write this file, even root.
-        # ---------------------------------------------
-
-        # .age means the decrypted file is still encrypted by age(via a passphrase)
-        "ryan4yin-gpg-subkeys.priv.age" = {
-          file = "${mysecrets}/ryan4yin-gpg-subkeys-2024-01-27.priv.age.age";
-        }
-        // noaccess;
-
-        # ---------------------------------------------
-        # only root can read this file.
-        # ---------------------------------------------
-
-        "wg-business.conf" = {
-          file = "${mysecrets}/wg-business.conf.age";
-        }
-        // high_security;
-
-        "rclone.conf" = {
-          file = "${mysecrets}/rclone.conf.age";
-        }
-        // high_security;
-
-        # alias-for-work
         "alias-for-work.nushell" = {
           file = "${mysecrets}/alias-for-work.nushell.age";
         }
@@ -99,20 +66,6 @@ in
 
       # place secrets in /etc/
       environment.etc = {
-        # wireguard config used with `wg-quick up wg-business`
-        "wireguard/wg-business.conf" = {
-          source = config.age.secrets."wg-business.conf".path;
-        };
-
-        "agenix/rclone.conf" = {
-          source = config.age.secrets."rclone.conf".path;
-        };
-
-        "agenix/ryan4yin-gpg-subkeys.priv.age" = {
-          source = config.age.secrets."ryan4yin-gpg-subkeys.priv.age".path;
-          mode = "0000";
-        };
-
         # The following secrets are used by home-manager modules
         # So we need to make then readable by the user
         "agenix/alias-for-work.nushell" = {

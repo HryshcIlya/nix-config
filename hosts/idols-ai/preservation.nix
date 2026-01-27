@@ -195,10 +195,6 @@ in
         # ======================================
 
         {
-          directory = ".gnupg";
-          mode = "0700";
-        }
-        {
           directory = ".ssh";
           mode = "0700";
         }
@@ -207,7 +203,6 @@ in
           mode = "0700";
         }
 
-        ".local/share/password-store"
         # gnmome keyrings
         ".local/share/keyrings"
 
