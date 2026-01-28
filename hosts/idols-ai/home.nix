@@ -7,4 +7,8 @@ in
 
   xdg.configFile."niri/niri-hardware.kdl".source =
     mkSymlink "${config.home.homeDirectory}/nix-config/hosts/idols-ai/niri-hardware.kdl";
+
+  home.sessionVariables = {
+    "LIBVA_DRIVER_NAME" = "radeonsi";
+  };
 }

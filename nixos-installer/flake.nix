@@ -36,6 +36,7 @@
             ../modules/nixos/base/ssh.nix
 
             ../hosts/idols-ai/hardware-configuration.nix
+            ../hosts/idols-ai/amd.nix
             ../hosts/idols-ai/preservation.nix
           ];
         };

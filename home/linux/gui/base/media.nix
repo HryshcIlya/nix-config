@@ -17,6 +17,7 @@
     vdpauinfo
     vulkan-tools
     mesa-demos
+    amdgpu_top
     (pkgs-x64.zoom-us)
   ];
 

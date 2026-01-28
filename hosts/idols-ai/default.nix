@@ -1,7 +1,7 @@
 { myvars, lib, ... }:
 #############################################################
 #
-#  Ai - my main computer, with NixOS + I5-13600KF + RTX 4090 GPU, for gaming & daily use.
+#  Ai - main desktop workstation, NixOS + AMD Ryzen + AMD GPU
 #
 #############################################################
 let
@@ -25,6 +25,7 @@ in
 
     ./preservation.nix
     ./secureboot.nix
+    ./amd.nix
   ];
 
   services.sunshine.enable = lib.mkForce true;
