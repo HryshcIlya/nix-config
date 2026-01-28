@@ -1,190 +1,141 @@
 # Secrets Management
 
-> For Website/App's passwords, see
-> [/home/base/desktop/password-store](/home/base/desktop/password-store/README.md) for more details.
+Secrets are encrypted via [agenix](https://github.com/ryantm/agenix) and stored in a separate
+private GitHub repository, referenced as a flake input.
 
-All my secrets are safely encrypted via agenix, and stored in a separate private GitHub repository
-and referenced as a flake input in this flake.
+## How It Works
 
-The encryption is done using the public keys of all my hosts (`/etc/ssh/ssh_host_ed25519_key`), so
-that they can only be decrypted on any of my configured hosts. The host keys are generated locally
-on each host by OpenSSH without a passphrase and are only readable by `root`. The host keys will
-never leave the host.
+Secrets are encrypted using:
 
-In this way, all secrets are still encrypted when transmitted over the network and written to
-`/nix/store`. They are decrypted only when they are finally used.
+1. **Host SSH key** (`/etc/ssh/ssh_host_ed25519_key`) — for runtime decryption
+2. **Recovery key** — stored offline on a backup USB for disaster recovery
 
-In addition, we further improve the security of secret files by storing them in a separate private
-repository.
+The host key is generated locally by OpenSSH, never leaves the host, and is only readable by `root`.
+Secrets remain encrypted in the Nix store and are decrypted only when used.
 
-This directory contains this `README.md`, and a `nixos.nix` file that is used to decrypt all my
-secrets via `agenix`. Then, I can use them in this flake.
+## Standalone Recovery Process
+
+Since this is a single-host configuration, rekeying is done with the **recovery key** stored on a
+backup USB, not from another host.
+
+### Rekeying After Fresh Install
+
+This repository (`nix-config`) references the private secrets repo as a flake input (`mysecrets`).
+If GitHub SSH access is not available yet, rekey from your backup USB and use a local override for
+the first switch.
+
+1. Boot into the minimal system after installation.
+2. Ensure host SSH keys persist (this config uses an ephemeral `/`):
+
+   ```bash
+   sudo mkdir -p /persistent/etc
+   sudo mv /etc/ssh /persistent/etc/
+   ```
+
+3. Mount your backup USB with the secrets repo:
+
+   ```bash
+   sudo mount /dev/sdb1 /mnt/usb
+   cd /mnt/usb/nix-secrets
+   ```
+
+4. Update `secrets.nix` recipients:
+
+   ```bash
+   cat /persistent/etc/ssh/ssh_host_ed25519_key.pub
+   ${EDITOR:-nvim} ./secrets.nix
+   ```
+
+5. Rekey with the recovery key:
+
+   ```bash
+   nix shell github:ryantm/agenix#agenix
+   agenix -r -i ./recovery-key
+   ```
+
+6. Commit the changes in the secrets repo (push can be done later).
+
+7. When switching to the full NixOS configuration, override the secrets flake input from USB:
+
+   ```bash
+   sudo nixos-rebuild switch --flake ~/nix-config#ai-niri \
+     --override-input mysecrets git+file:///mnt/usb/nix-secrets
+   ```
+
+Important:
+
+- Do not use `--override-input mysecrets path:...` pointing at a directory that contains
+  `recovery-key`. `path:` inputs are copied into `/nix/store` wholesale.
 
 ## Adding or Updating Secrets
 
-> All the operations in this section should be performed in my private repository: `nix-secrets`.
+All operations are performed in the private `nix-secrets` repository.
 
-This task is accomplished using the [agenix](https://github.com/ryantm/agenix) CLI tool with the
-`./secrets.nix` file, so you need to have it installed first:
-
-To use agenix temporarily, run:
+### Using agenix CLI
 
 ```bash
 nix shell github:ryantm/agenix#agenix
 ```
 
-or agenix provided by ragenix, run:
+### Creating a New Secret
+
+1. Edit `secrets.nix` to add the new secret:
+
+   ```nix
+   let
+     host_ai = "ssh-ed25519 AAAA... root@ai";
+     recovery_key = "ssh-ed25519 AAAA... User@recovery";
+     systems = [ host_ai recovery_key ];
+   in
+   {
+     "./new-secret.age".publicKeys = systems;
+   }
+   ```
+
+2. Create and encrypt the secret:
+
+   ```bash
+   # Using host key (on the running system)
+   agenix -e ./new-secret.age -i /etc/ssh/ssh_host_ed25519_key
+
+   # Or using recovery key (from backup USB)
+   agenix -e ./new-secret.age -i ./recovery-key
+   ```
+
+### Editing an Existing Secret
 
 ```bash
-nix shell github:ryan4yin/ragenix#ragenix
+agenix -e ./existing-secret.age -i /etc/ssh/ssh_host_ed25519_key
 ```
-
-Suppose you want to add a new secret file `xxx.age`. Follow these steps:
-
-1. Navigate to your private `nix-secrets` repository.
-2. Edit `secrets.nix` and add a new entry for `xxx.age`, defining the encryption keys and the secret
-   file path, for example:
-
-```nix
-# This file is not imported into your NixOS configuration. It is only used for the agenix CLI.
-# agenix use the public keys defined in this file to encrypt the secrets.
-# and users can decrypt the secrets by any of the corresponding private keys.
-
-let
-  # Get system's ssh public key by command:
-  #    cat /etc/ssh/ssh_host_ed25519_key.pub
-  # If you do not have this file, you can generate all the host keys by command:
-  #    sudo ssh-keygen -A
-  idol_ai = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINHZtzeaQyXwuRMLzoOAuTu8P9bu5yc5MBwo5LI3iWBV root@ai";
-
-  # A key for recovery purpose, generated by `ssh-keygen -t ed25519 -a 256 -C "ryan@agenix-recovery"` with a strong passphrase
-  # and keeped it offline in a safe place.
-  recovery_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHnIGH+653Oe+GQaA8zjjj7HWMWp7bWXed4q5KqY4nqG ryan@agenix-recovery";
-  systems = [
-    idol_ai
-
-    recovery_key
-  ];
-{
-  "./xxx.age".publicKeys = users ++ systems;
-}
-```
-
-3. Create and edit the secret file `xxx.age` interactively using the following command:
-
-```shell
-sudo agenix -e ./xxx.age -i /etc/ssh/ssh_host_ed25519_key
-```
-
-Alternatively, you can encrypt an existing file to `xxx.age` using the following command:
-
-```shell
-cat xxx | sudo agenix  -e ./xxx.age -i /etc/ssh/ssh_host_ed25519_key
-```
-
-`agenix` will encrypt the file with all the public keys we defined in `secrets.nix`, so all the
-users and systems defined in `secrets.nix` can decrypt it with their private keys.
 
 ## Deploying Secrets
 
-> All the operations in this section should be performed in this repository.
+Secrets are automatically decrypted during `nixos-rebuild switch` using the host's SSH key.
 
-First, add your own private `nix-secrets` repository and `agenix` as a flake input, and pass them to
-sub modules via `specialArgs`:
+In this configuration, when using an ephemeral root with preservation, the key is expected at:
 
-```nix
-{
-  inputs = {
-    # ......
+- `/persistent/etc/ssh/ssh_host_ed25519_key`
 
-    # secrets management, lock with git commit at 2023/5/15
-    agenix.url = "github:ryantm/agenix/db5637d10f797bb251b94ef9040b237f4702cde3";
-
-    # my private secrets, it's a private repository, you need to replace it with your own.
-    mysecrets = { url = "github:ryan4yin/nix-secrets"; flake = false; };
-  };
-
-  outputs = inputs@{ self, nixpkgs, ... }: {
-    nixosConfigurations = {
-      nixos-test = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-
-        # Set all input parameters as specialArgs of all sub-modules
-        # so that we can use the `agenix` & `mysecrets` in sub-modules
-        specialArgs = inputs;
-        modules = [
-          # ......
-
-          # import & decrypt secrets in `mysecrets` in this module
-          ./secrets/default.nix
-        ];
-      };
-    };
-  };
-}
-```
-
-Then, create `./secrets/default.nix` with the following content:
+The configuration in `secrets/nixos.nix` defines which secrets are deployed:
 
 ```nix
-# import & decrypt secrets in `mysecrets` in this module
-{ config, pkgs, agenix, mysecrets, ... }:
-
-{
-  imports = [
-     agenix.nixosModules.default
-  ];
-
-  # if you changed this key, you need to regenerate all encrypt files from the decrypt contents!
-  age.identityPaths = [
-    # using the host key for decryption
-    # the host key is generated on every host locally by openssh, and will never leave the host.
-    "/etc/ssh/ssh_host_ed25519_key"
-  ];
-
-  age.secrets."xxx" = {
-    # whether secrets are symlinked to age.secrets.<name>.path
-    symlink = true;
-    # target path for decrypted file
-    path = "/etc/xxx/";
-    # encrypted file path
-    file =  "${mysecrets}/xxx.age";  # refer to ./xxx.age located in `mysecrets` repo
-    mode = "0400";
-    owner = "root";
-    group = "root";
-  };
-}
+age.secrets."secret-name" = {
+  file = "${mysecrets}/secret-name.age";
+  path = "/run/agenix/secret-name";
+  mode = "0400";
+  owner = "root";
+};
 ```
-
-From now on, every time you run `nixos-rebuild switch`, it will decrypt the secrets using the
-private keys defined in `age.identityPaths`. It will then symlink the secrets to the path defined by
-the `age.secrets.<name>.path` argument, which defaults to `/etc/secrets`.
-
-## Adding a new host
-
-1. `cat` the system-level public key(`/etc/ssh/ssh_host_ed25519_key.pub`) of the new host, and send
-   it to an old host which has already been configured.
-2. On the old host:
-   1. Add the public key to `secrets.nix`, and rekey all the secrets via
-      `sudo agenix -r -i /etc/ssh/ssh_host_ed25519_key`.
-   2. Commit and push the changes to `nix-secrets`.
-3. On the new host:
-   1. Clone this repo and run `nixos-rebuild switch` to deploy it, all the secrets will be decrypted
-      automatically via the host private key.
 
 ## Troubleshooting
 
-### NixOS Module
+Check agenix logs:
 
-Check logs:
-
-```
+```bash
 journalctl | grep -5 agenix
 ```
 
-## Other Replacements
+Common issues:
 
-- [ragenix](https://github.com/yaxitech/ragenix): A Rust reimplementation of agenix.
-  - agenix is mainly written in bash, and it's error message is quite obscure, a little typo may
-    cause some errors no one can understand.
-  - with a type-safe language like Rust, we can get a better error message and less bugs.
+- **"No identity found"** — Host key not in `secrets.nix` or not copied to `/persistent/etc/ssh/`
+- **"Failed to decrypt"** — Wrong key or corrupted `.age` file
