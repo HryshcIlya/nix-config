@@ -17,7 +17,6 @@
     vdpauinfo
     vulkan-tools
     mesa-demos
-    nvitop
     (pkgs-x64.zoom-us)
   ];
 
