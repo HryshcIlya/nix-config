@@ -10,45 +10,13 @@ This directory contains all host-specific configurations for my NixOS systems.
 
 Named after characters from "Oshi no Ko":
 
-| Host         | Platform    | Hardware              | Purpose               | Status      |
-| ------------ | ----------- | --------------------- | --------------------- | ----------- |
-| `ai`         | NixOS       | i5-13600KF + RTX 4090 | Gaming & Daily Use    | ✅ Active   |
-| `aquamarine` | KubeVirt VM | Virtual               | Monitoring & Services | ✅ Active   |
-| `kana`       | NixOS       | Virtual               | Reserved              | ⚪ Not Used |
-| `ruby`       | NixOS       | Virtual               | Reserved              | ⚪ Not Used |
-
-#### `12kingdoms` - Homelab Servers
-
-Named after "Twelve Kingdoms":
-
-| Host      | Platform | Hardware                               | Purpose                    | Status    |
-| --------- | -------- | -------------------------------------- | -------------------------- | --------- |
-| `shoryu`  | NixOS    | MoreFine S500Plus (AMD Ryzen 9 5900HX) | KubeVirt Host & K3s Master | ✅ Active |
-| `shushou` | NixOS    | MinisForum UM560 (AMD Ryzen 5 5625U)   | KubeVirt Host & K3s Master | ✅ Active |
-| `youko`   | NixOS    | MinisForum HX99G (AMD Ryzen 9 6900HX)  | KubeVirt Host & K3s Master | ✅ Active |
-
-### Virtual Machines & Clusters
-
-#### `k8s` - Kubernetes Infrastructure
-
-- **KubeVirt Cluster**: 3 physical mini PCs (shoryu, shushou, youko) running all VMs
-- **K3s Production**: 3 masters + 3 workers for production workloads
-- **K3s Testing**: 3 masters for testing and development
-
-### External Systems
-
-- **SBCs**: aarch64/riscv64 single-board computers managed in
-  [ryan4yin/nixos-config-sbc](https://github.com/ryan4yin/nixos-config-sbc)
-
-All my riscv64 hosts:
-
-![](/_img/nixos-riscv-cluster.webp)
+| Host | Platform | Hardware              | Purpose            | Status    |
+| ---- | -------- | --------------------- | ------------------ | --------- |
+| `ai` | NixOS    | i5-13600KF + RTX 4090 | Gaming & Daily Use | ✅ Active |
 
 ## Naming Conventions
 
 - **idols**: Characters from "Oshi no Ko" anime/manga
-- **12kingdoms**: Characters from "Twelve Kingdoms" anime/novel series
-- **k8s**: Kubernetes-related systems follow standard naming patterns
 
 ## How to Add a New Host
 
@@ -93,32 +61,9 @@ Use existing hosts as templates. The key files typically include:
 ### Examples to Reference
 
 - **Desktop systems**: See `idols-ai/` for gaming/workstation setup
-- **Server systems**: See `kubevirt-shoryu/` for K8s/KubeVirt hosts
-
-## Distributed Building
-
-I usually run the build command on `Ai` and nix will distribute the build to other NixOS machines,
-which is convenient and fast.
-
-When building some packages for riscv64 or aarch64, I often have no cache available because of
-various changes under the hood, so I need to build much more packages than usual, which is one of
-the reasons why the cluster was originally built, and another reason is distributed building is
-cool!
-
-![](/_img/nix-distributed-building.webp)
-
-![](/_img/nix-distributed-building-log.webp)
 
 ## References
 
 [Oshi no Ko 【推しの子】 - Wikipedia](https://en.wikipedia.org/wiki/Oshi_no_Ko):
 
 ![](/_img/idols-famaily.webp) ![](/_img/idols-ai.webp)
-
-[The Rolling Girls【ローリング☆ガールズ】 - Wikipedia](https://en.wikipedia.org/wiki/The_Rolling_Girls):
-
-![](/_img/rolling_girls.webp)
-
-[List of Twelve Kingdoms characters](https://en.wikipedia.org/wiki/List_of_Twelve_Kingdoms_characters)
-
-![](/_img/12kingdoms-1.webp) ![](/_img/12kingdoms-Youko-Rakushun.webp)

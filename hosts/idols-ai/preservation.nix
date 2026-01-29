@@ -71,8 +71,6 @@ in
       # "/var/lib/waydroid"
 
       # network
-      "/var/lib/tailscale"
-      "/var/lib/netbird-homelab" # netbird's homelab client
       "/var/lib/bluetooth"
       "/var/lib/NetworkManager"
       "/var/lib/iwd"
@@ -169,34 +167,12 @@ in
         # ".local/share/jupyter"
 
         # ======================================
-        # Cloud Native
+        # Containers
         # ======================================
-        {
-          # pulumi - infrastructure as code
-          directory = ".pulumi";
-          mode = "0700";
-        }
-        {
-          directory = ".aws";
-          mode = "0700";
-        }
-        {
-          directory = ".aliyun";
-          mode = "0700";
-        }
-        {
-          directory = ".config/gcloud";
-          mode = "0700";
-        }
         {
           directory = ".docker";
           mode = "0700";
         }
-        {
-          directory = ".kube";
-          mode = "0700";
-        }
-        ".terraform.d/plugin-cache" # terraform's plugin cache
 
         # ======================================
         # language package managers
@@ -282,7 +258,6 @@ in
         ".local/share/atuin"
         ".local/share/zoxide"
         ".local/share/direnv"
-        ".local/share/k9s"
         ".cache/tealdeer" # tldr
 
         # ======================================
@@ -365,7 +340,6 @@ in
       "/home/${username}/.local/share".d = permission;
       "/home/${username}/.local/state".d = permission;
       "/home/${username}/.local/state/nix".d = permission;
-      "/home/${username}/.terraform.d".d = permission;
     };
 
   # systemd-machine-id-commit.service would fail but it is not relevant

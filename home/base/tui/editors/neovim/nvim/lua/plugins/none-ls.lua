@@ -37,7 +37,6 @@ return {
       formatting.black, -- Python formatter
       formatting.goimports, -- Go formatter
       formatting.shfmt, -- Shell formatter
-      formatting.terraform_fmt, -- Terraform formatter
       formatting.stylua, -- Lua formatter
       -- formatting.alejandra, -- Nix formatter
       formatting.sqlfluff.with { -- SQL formatter

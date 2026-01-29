@@ -7,10 +7,6 @@ There is no need to do this when you have a small number of machines.
 But when you have a large number of machines, it is necessary to manage them in a fine-grained way,
 otherwise, it will be difficult to manage and maintain them.
 
-The number of my machines has grown to more than 20, and the increase in scale has shown signs of
-getting out of control of complexity, so it is a natural and reasonable choice to use this
-fine-grained architecture to manage.
-
 ## Tests
 
 Testing is not necessary when your configuration is not complex, but with the increase in the number
@@ -56,14 +52,6 @@ Problems:
       agenix secrets.
   - [ ] Maybe it's better to test every service separately, not the whole host?
 
-How to run NixOS tests for every host:
-
-```bash
-# Format: nix build .#<name>-nixos-tests
-
-nix build .#ruby-nixos-tests
-```
-
 ## Overview
 
 All the outputs of this flake are defined here.
@@ -75,21 +63,8 @@ All the outputs of this flake are defined here.
 ├── README.md
 └── x86_64-linux      # All outputs for Linux x86_64
     ├── default.nix
-    ├── nixos-tests
     ├── src           # every host has its own file in this directory
-    │   ├── idols-ai.nix
-    │   ├── idols-aquamarine.nix
-    │   ├── idols-kana.nix
-    │   ├── idols-ruby.nix
-    │   ├── k3s-prod-1-master-1.nix
-    │   ├── k3s-prod-1-master-2.nix
-    │   ├── k3s-prod-1-master-3.nix
-    │   ├── k3s-prod-1-worker-1.nix
-    │   ├── k3s-prod-1-worker-2.nix
-    │   ├── k3s-prod-1-worker-3.nix
-    │   ├── kubevirt-shoryu.nix
-    │   ├── kubevirt-shushou.nix
-    │   └── kubevirt-youko.nix
+    │   └── idols-ai.nix
     └── tests         # eval tests
         ├── home-manager
         │   ├── expected.nix

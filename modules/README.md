@@ -21,35 +21,30 @@ modules/
     │   ├── core.nix       # Core system settings
     │   ├── default.nix
     │   ├── i18n.nix       # Internationalization
-    │   ├── monitoring.nix # System monitoring
-    │   ├── networking.nix # Network configuration
+    │   ├── networking/    # Network configuration
     │   ├── nix.nix        # Nix settings
     │   ├── packages.nix   # System packages
-    │   ├── remote-building.nix # Remote build setup
     │   ├── ssh.nix        # SSH daemon configuration
     │   ├── user-group.nix # User and group management
     │   └── zram.nix       # ZRAM swap configuration
     ├── desktop.nix         # Desktop environment configuration
-    ├── desktop/            # Desktop-specific modules
-    │   ├── default.nix
-    │   ├── fhs.nix        # FHS environment
-    │   ├── fonts.nix      # Desktop fonts
-    │   ├── guix.nix       # GNU Guix integration
-    │   ├── misc.nix       # Miscellaneous desktop settings
-    │   ├── networking/    # Network-related desktop configs
-    │   │   ├── clash-verge.nix
-    │   │   ├── default.nix
-    │   │   ├── remote-desktop.nix
-    │   │   └── tailscale.nix
-    │   ├── peripherals.nix # Peripheral device configuration
-    │   ├── security.nix   # Desktop security settings
-    │   ├── virtualisation.nix # Virtualization support
-    │   └── xdg.nix       # XDG base directory settings
-    └── server/             # Server-specific modules
-        ├── kubevirt-hardware-configuration.nix
-        ├── server-aarch64.nix
-        ├── server-riscv64.nix
-        └── server.nix
+    └── desktop/            # Desktop-specific modules
+        ├── default.nix
+        ├── fhs.nix        # FHS environment
+        ├── fonts.nix      # Desktop fonts
+        ├── gaming.nix     # Gaming configuration
+        ├── guix.nix       # GNU Guix integration
+        ├── misc.nix       # Miscellaneous desktop settings
+        ├── networking/    # Network-related desktop configs
+        │   ├── clash-verge.nix
+        │   ├── default.nix
+        │   ├── remote-desktop.nix
+        │   └── wireshark.nix
+        ├── peripherals.nix # Peripheral device configuration
+        ├── power.nix      # Power management
+        ├── security.nix   # Desktop security settings
+        ├── virtualisation.nix # Virtualization support
+        └── xdg.nix       # XDG base directory settings
 ```
 
 ## Module Categories
@@ -70,7 +65,6 @@ Platform-specific NixOS configuration:
 
 - **Base**: Core system settings and services
 - **Desktop**: Desktop environment and GUI applications
-- **Server**: Server-specific optimizations and services
 
 ## Usage
 
@@ -81,6 +75,4 @@ Modules are imported based on functionality:
 
 ## Architecture Support
 
-- **x86_64-linux**: Desktop and server configurations
-- **aarch64-linux**: ARM64 Linux systems
-- **server-riscv64**: RISC-V server configurations
+- **x86_64-linux**: Desktop configurations

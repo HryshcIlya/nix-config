@@ -57,14 +57,7 @@
       use aliases/git/git-aliases.nu *
       use aliases/eza/eza-aliases.nu *
       use aliases/bat/bat-aliases.nu *
-      use ${./aliases/gcloud.nu} *
 
-      # -*- modules -*-
-      # argx & lg is required by the kubernetes module
-      use modules/argx *
-      use modules/lg *
-      # k8s/helm aliases, completions, 
-      use modules/kubernetes *
       # a wrapper around the jc cli tool, convert cli outputs to nushell tables
       # use modules/jc
     '';

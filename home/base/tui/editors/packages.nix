@@ -21,7 +21,6 @@
 
         #-- json like
         # terraform
-        terraform-ls
         jsonnet
         jsonnet-language-server
         taplo # TOML language server / formatter / validator

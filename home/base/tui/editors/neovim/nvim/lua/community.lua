@@ -42,10 +42,8 @@ return {
   { import = "astrocommunity.pack.proto" },
 
   ---- Operation & Cloud Native
-  { import = "astrocommunity.pack.terraform" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.docker" },
-  { import = "astrocommunity.pack.helm" },
 
   -- colorscheme
   { import = "astrocommunity.colorscheme.catppuccin" },

@@ -24,7 +24,6 @@ return {
           "go",
           "jsonnet",
           "rust",
-          "terraform",
           "nu",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
@@ -49,7 +48,6 @@ return {
       "yamlls", -- yaml language server
       "taplo", -- toml language server
       "dagger", -- cuelsp - cue language server
-      "terraformls", -- terraform hcl
       "marksman", -- markdown ls
       "nickel_ls", -- nickel language server
       -- "nil_ls", -- nix language server

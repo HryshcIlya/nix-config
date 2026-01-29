@@ -24,13 +24,8 @@
 This repository is home to the nix code that builds my systems:
 
 1. NixOS Desktops: NixOS with home-manager, niri, agenix, etc.
-2. NixOS Servers: virtual machines running on Proxmox/KubeVirt, with various services, such as
-   kubernetes, homepage, prometheus, grafana, etc.
 
 See [./hosts](./hosts) for details of each host.
-
-See [./Virtual-Machine.md](./Virtual-Machine.md) for details of how to create & manage KubeVirt's
-Virtual Machine from this flake.
 
 ## Why NixOS & Flakes?
 
