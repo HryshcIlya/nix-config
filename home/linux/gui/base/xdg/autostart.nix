@@ -2,7 +2,7 @@
 {
   # XDG autostart entries - ensures apps start after portal services are ready
   xdg.autostart.enable = true;
-  # This fixes nixpak sandboxed apps (like firefox) accessing mapped folders correctly
+  # This fixes nixpak sandboxed apps (like librewolf) accessing mapped folders correctly
   xdg.autostart.entries = [
     "${pkgs.foot}/share/applications/foot.desktop"
     "${pkgs.alacritty}/share/applications/Alacritty.desktop"
@@ -11,7 +11,7 @@
     "${pkgs.clash-verge-rev}/share/applications/clash-verge.desktop"
 
     # nixpaks
-    "${pkgs.nixpaks.firefox}/share/applications/org.mozilla.firefox.desktop"
+    "${pkgs.nixpaks.librewolf}/share/applications/io.gitlab.librewolf-community.desktop"
     "${pkgs.nixpaks.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
   ]
   ++ (

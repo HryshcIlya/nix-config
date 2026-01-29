@@ -241,7 +241,7 @@ in
         # ======================================
         # browsers
         # ======================================
-        ".mozilla"
+        ".librewolf"
         ".config/google-chrome"
         ".cache/google-chrome"
         ".config/chromium"

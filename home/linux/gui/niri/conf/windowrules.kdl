@@ -21,7 +21,7 @@ window-rule {
 
 // Web browsers - open in workspace 2
 window-rule {
-    match app-id="firefox"
+    match app-id="librewolf"
     open-on-workspace "2browser"
     open-maximized true
 }

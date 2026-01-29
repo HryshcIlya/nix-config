@@ -24,7 +24,7 @@ in
       nixpaks = {
         qq = wrapper pkgs-master ./qq.nix;
         telegram-desktop = wrapper super ./telegram-desktop.nix;
-        firefox = wrapper super ./firefox.nix;
+        librewolf = wrapper super ./librewolf.nix;
       };
     })
   ];

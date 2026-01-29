@@ -2,10 +2,10 @@
 # - Flatpak manifest's docs:
 #   - https://docs.flatpak.org/en/latest/manifests.html
 #   - https://docs.flatpak.org/en/latest/sandbox-permissions.html
-# - Firefox's flatpak manifest: https://hg.mozilla.org/mozilla-central/file/tip/taskcluster/docker/firefox-flatpak/runme.sh#l151
+# - LibreWolf's flatpak manifest: https://github.com/flathub/io.gitlab.librewolf-community/blob/master/io.gitlab.librewolf-community.json
 {
   lib,
-  firefox,
+  librewolf,
   mkNixPak,
   buildEnv,
   makeDesktopItem,
@@ -13,7 +13,7 @@
 }:
 
 let
-  appId = "org.mozilla.firefox";
+  appId = "io.gitlab.librewolf-community";
   wrapped = mkNixPak {
     config =
       {
@@ -23,8 +23,8 @@ let
       }:
       {
         app = {
-          package = firefox;
-          binPath = "bin/firefox";
+          package = librewolf;
+          binPath = "bin/librewolf";
         };
         flatpak.appId = appId;
 
@@ -35,13 +35,13 @@ let
         ];
 
         bubblewrap = {
-          # To trace all the home files Firefox accesses, you can use the following nushell command:
-          #   just trace-access firefox
+          # To trace all the home files LibreWolf accesses, you can use the following nushell command:
+          #   just trace-access librewolf
           # See the Justfile in the root of this repository for more information.
           bind.rw = [
             # given the read write permission to the following directories.
             # NOTE: sloth.mkdir is used to create the directory if it does not exist!
-            (sloth.mkdir (sloth.concat' sloth.homeDir "/.mozilla"))
+            (sloth.mkdir (sloth.concat' sloth.homeDir "/.librewolf"))
 
             sloth.xdgDocumentsDir
             sloth.xdgDownloadDir
@@ -52,8 +52,8 @@ let
           bind.ro = [
             "/sys/bus/pci"
             [
-              "${config.app.package}/lib/firefox"
-              "/app/etc/firefox"
+              "${config.app.package}/lib/librewolf"
+              "/app/etc/librewolf"
             ]
 
             # Unsure
@@ -76,14 +76,14 @@ buildEnv {
     wrapped.config.script
     (makeDesktopItem {
       name = appId;
-      desktopName = "Firefox";
-      genericName = "Firefox Boxed";
-      comment = "Firefox Browser";
+      desktopName = "LibreWolf";
+      genericName = "LibreWolf Boxed";
+      comment = "LibreWolf Browser";
       exec = "${exePath} %U";
       terminal = false;
-      icon = "firefox";
+      icon = "librewolf";
       startupNotify = true;
-      startupWMClass = "firefox";
+      startupWMClass = "librewolf";
       type = "Application";
       categories = [
         "Network"

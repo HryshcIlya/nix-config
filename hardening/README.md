@@ -22,7 +22,7 @@
 ### 2. **Per-App Level**
 
 - **Nixpak** (`nixpaks/`): Bubblewrap-based sandboxing for applications
-  - Firefox configuration
+  - LibreWolf configuration
   - QQ (Chinese messaging app) configuration
   - Modular system with reusable components
 - **Firejail** (legacy): SUID-based sandboxing (not used)
@@ -31,13 +31,13 @@
 
 ## Current Implementation Status
 
-| Component         | Status    | Notes                          |
-| ----------------- | --------- | ------------------------------ |
-| AppArmor Profiles | 🚧 WIP    | Basic structure in place       |
-| Nixpak Firefox    | ✅ Active | Firefox sandboxing via nixpak  |
-| Nixpak QQ         | ✅ Active | QQ application sandboxing      |
-| Bubblewrap WeChat | ✅ Active | WeChat specific sandboxing     |
-| System Profiles   | 🚧 WIP    | Hardened system configurations |
+| Component         | Status    | Notes                           |
+| ----------------- | --------- | ------------------------------- |
+| AppArmor Profiles | 🚧 WIP    | Basic structure in place        |
+| Nixpak LibreWolf  | ✅ Active | LibreWolf sandboxing via nixpak |
+| Nixpak QQ         | ✅ Active | QQ application sandboxing       |
+| Bubblewrap WeChat | ✅ Active | WeChat specific sandboxing      |
+| System Profiles   | 🚧 WIP    | Hardened system configurations  |
 
 ## Directory Structure
 
@@ -51,7 +51,7 @@ hardening/
 │   └── wechat.nix
 ├── nixpaks/           # Nixpak application sandboxing
 │   ├── default.nix
-│   ├── firefox.nix
+│   ├── librewolf.nix
 │   ├── qq.nix
 │   └── modules/       # Reusable nixpak modules
 │       ├── gui-base.nix

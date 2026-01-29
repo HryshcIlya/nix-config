@@ -15,7 +15,7 @@
       let
         browser = [
           "google-chrome.desktop"
-          "firefox.desktop"
+          "io.gitlab.librewolf-community.desktop"
         ];
         editor = [
           "nvim.desktop"
