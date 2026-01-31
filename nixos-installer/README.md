@@ -161,10 +161,44 @@ sudo umount /mnt/usb
 
 ## Enabling Secure Boot
 
-After the system is running, follow the
-[lanzaboote Quick Start](https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md)
-guide. The secure boot configuration is in
+Secure Boot uses **Automatic Provisioning** via lanzaboote — no manual key management required.
+
+### Prerequisites
+
+Before `nixos-rebuild switch`, put your BIOS into **Setup Mode**:
+
+1. Enter BIOS (Del/F2 on boot)
+2. Navigate to Security → Secure Boot
+3. Delete all Secure Boot keys (enters Setup Mode)
+4. Save and exit
+
+For MSI motherboards, see detailed steps in
 [hosts/idols-ai/secureboot.nix](/hosts/idols-ai/secureboot.nix).
+
+### What happens automatically
+
+After `nixos-rebuild switch --flake .#ai-niri`:
+
+| Boot | What happens |
+|------|--------------|
+| #1 | lanzaboote generates keys, signs artifacts, prepares enrollment |
+| #2 | systemd-boot enrolls keys into firmware |
+
+### Final step
+
+After Boot #2, enable Secure Boot enforcement in BIOS:
+
+1. Enter BIOS
+2. Security → Secure Boot → Enable
+3. Save and exit
+
+Verify with:
+
+```bash
+sbctl status  # Should show "Secure Boot: enabled"
+```
+
+See [lanzaboote docs](https://nix-community.github.io/lanzaboote/) for troubleshooting.
 
 ## Changing LUKS Passphrase
 

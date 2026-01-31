@@ -31,5 +31,11 @@
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/etc/secureboot";
+
+    # Automatic Provisioning (trust on first use)
+    # Boot #1: keys generated + artifacts signed + enrollment prepared
+    # Boot #2: systemd-boot enrolls keys into firmware
+    autoGenerateKeys.enable = true;
+    autoEnrollKeys.enable = true;
   };
 }
