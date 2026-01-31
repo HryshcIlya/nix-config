@@ -6,15 +6,20 @@
 #############################################################
 let
   hostName = "ai"; # Define your hostname.
-
-  inherit (myvars.networking) mainGateway mainGateway6 nameservers;
-  inherit (myvars.networking.hostsAddr.${hostName}) iface ipv4 ipv6;
-  ipv4WithMask = "${ipv4}/24";
-  ipv6WithMask = "${ipv6}/64";
+  iface = "enp37s0";
+  dnsServers = [
+    "1.1.1.1#cloudflare-dns.com"
+    "1.0.0.1#cloudflare-dns.com"
+    "9.9.9.9#dns.quad9.net"
+    "149.112.112.112#dns.quad9.net"
+    "2606:4700:4700::1111#cloudflare-dns.com"
+    "2606:4700:4700::1001#cloudflare-dns.com"
+    "2620:fe::fe#dns.quad9.net"
+    "2620:fe::9#dns.quad9.net"
+  ];
 in
 {
   imports = [
-    ./netdev-mount.nix
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./nvidia.nix
@@ -26,6 +31,11 @@ in
 
   services.sunshine.enable = lib.mkForce true;
   services.tuned.ppdSettings.main.default = lib.mkForce "performance";
+
+  services.resolved = {
+    enable = true;
+    settings.Resolve.DNSOverTLS = "opportunistic";
+  };
 
   networking = {
     inherit hostName;
@@ -41,26 +51,17 @@ in
   systemd.network.networks."10-${iface}" = {
     matchConfig.Name = [ iface ];
     networkConfig = {
-      Address = [
-        ipv4WithMask
-        ipv6WithMask
-      ];
-      DNS = nameservers;
-      DHCP = "ipv6"; # enable DHCPv6 only, so we can get a GUA.
+      DNS = dnsServers;
+      DHCP = "ipv4";
       IPv6AcceptRA = true; # for Stateless IPv6 Autoconfiguraton (SLAAC)
       LinkLocalAddressing = "ipv6";
     };
-    routes = [
-      {
-        Destination = "0.0.0.0/0";
-        Gateway = mainGateway;
-      }
-      {
-        Destination = "::/0";
-        Gateway = mainGateway6;
-        GatewayOnLink = true; # it's a gateway on local link.
-      }
-    ];
+    dhcpV4Config = {
+      UseDNS = false;
+    };
+    ipv6AcceptRAConfig = {
+      UseDNS = false;
+    };
     linkConfig.RequiredForOnline = "routable";
   };
 
