@@ -1,15 +1,23 @@
 {
-  description = "NixOS configuration of Ryan Yin";
+  description = "Minimal NixOS installer configuration with disko";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     preservation.url = "github:nix-community/preservation";
-    nuenv.url = "github:DeterminateSystems/nuenv";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nuenv = {
+      url = "github:DeterminateSystems/nuenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     inputs@{
       nixpkgs,
+      disko,
       ...
     }:
     let
@@ -27,6 +35,9 @@
 
           modules = [
             { networking.hostName = "ai"; }
+
+            disko.nixosModules.default
+            ../hosts/idols-ai/disko.nix
 
             ./configuration.nix
 

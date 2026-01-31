@@ -1,11 +1,16 @@
-{ myvars, lib, ... }:
+{
+  myvars,
+  lib,
+  disko,
+  ...
+}:
 #############################################################
 #
 #  Ai - main desktop workstation, NixOS + AMD Ryzen + AMD GPU
 #
 #############################################################
 let
-  hostName = "ai"; # Define your hostname.
+  hostName = "ai";
   iface = "enp37s0";
   dnsServers = [
     "1.1.1.1#cloudflare-dns.com"
@@ -20,9 +25,9 @@ let
 in
 {
   imports = [
-    # Include the results of the hardware scan.
+    disko.nixosModules.default
+    ./disko.nix
     ./hardware-configuration.nix
-
     ./preservation.nix
     ./secureboot.nix
     ./amd.nix
