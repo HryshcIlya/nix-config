@@ -83,9 +83,6 @@ in
   evalTests = lib.lists.all (it: it.evalTests == { }) allSystemValues;
 
   checks = forAllSystems (system: {
-    # eval-tests per system
-    eval-tests = allSystems.${system}.evalTests == { };
-
     pre-commit-check = pre-commit-hooks.lib.${system}.run {
       src = mylib.relativeToRoot ".";
       hooks = {
