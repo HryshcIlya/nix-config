@@ -14,7 +14,7 @@
     defaultApplications =
       let
         browser = [
-          "google-chrome.desktop"
+          "helium.desktop"
           "io.gitlab.librewolf-community.desktop"
         ];
         editor = [

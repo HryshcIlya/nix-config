@@ -26,7 +26,7 @@ window-rule {
     open-maximized true
 }
 window-rule {
-    match app-id="google-chrome"
+    match app-id="net.imput.helium"
     open-on-workspace "2browser"
     open-maximized true
 }

@@ -68,6 +68,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # NUR (Nix User Repository) - for Helium browser
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # https://github.com/catppuccin/nix
     catppuccin = {
       url = "github:catppuccin/nix";

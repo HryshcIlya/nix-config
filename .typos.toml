@@ -23,6 +23,7 @@ extend-ignore-re = [
   "noice",                                                            # noice.nvim
   "crypted-nixos",
   "daed",
+  "imput",  # Helium browser app-id: net.imput.helium
 
   # catppuccin theme colors
   "11111b",

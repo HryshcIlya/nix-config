@@ -14,10 +14,7 @@
     "${pkgs.nixpaks.librewolf}/share/applications/io.gitlab.librewolf-community.desktop"
     "${pkgs.nixpaks.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
   ]
-  ++ (
-    if pkgs.stdenv.isx86_64 then
-      [ "${pkgs.google-chrome}/share/applications/google-chrome.desktop" ]
-    else
-      [ "${pkgs.chromium}/share/applications/chromium-browser.desktop" ]
-  );
+  ++ [
+    "${pkgs.nur.repos.Ev357.helium}/share/applications/helium.desktop"
+  ];
 }

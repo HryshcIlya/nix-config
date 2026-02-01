@@ -247,6 +247,8 @@ in
         ".cache/google-chrome"
         ".config/chromium"
         ".cache/chromium"
+        ".config/net.imput.helium"
+        ".cache/net.imput.helium"
 
         # ======================================
         # CLI data
