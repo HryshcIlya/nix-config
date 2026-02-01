@@ -242,6 +242,7 @@ in
         # browsers
         # ======================================
         ".librewolf"
+        ".zen"
         ".config/google-chrome"
         ".cache/google-chrome"
         ".config/chromium"

@@ -166,6 +166,28 @@
         "type": "github"
       }
     },
+    "firefox-addons": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "pkgs/firefox-addons",
+        "lastModified": 1769918637,
+        "narHash": "sha256-3XyGk89S0UFvKRZiKpFL4ImP5qP/2AOJUaYC7ogXnJo=",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "rev": "5659e4c18d1350d1b511fcdce885fdd879effa22",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "pkgs/firefox-addons",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "type": "gitlab"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -818,6 +840,7 @@
         "blender-bin": "blender-bin",
         "catppuccin": "catppuccin",
         "disko": "disko",
+        "firefox-addons": "firefox-addons",
         "ghostty": "ghostty",
         "haumea": "haumea",
         "helix": "helix",
@@ -833,7 +856,8 @@
         "nuenv": "nuenv",
         "pre-commit-hooks": "pre-commit-hooks",
         "preservation": "preservation",
-        "wallpapers": "wallpapers"
+        "wallpapers": "wallpapers",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -1012,6 +1036,29 @@
       "original": {
         "owner": "ryan4yin",
         "repo": "wallpapers",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769922110,
+        "narHash": "sha256-/0Cl75Yy4mQOWNfr2ZR5aYZlFc2geH7NUkwiwiKUNhg=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "dc3cb779f0fae72b3ebffd60a2272095f8848eda",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     },
