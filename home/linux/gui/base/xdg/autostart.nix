@@ -8,6 +8,8 @@
     "${pkgs.alacritty}/share/applications/Alacritty.desktop"
     "${pkgs.ghostty}/share/applications/com.mitchellh.ghostty.desktop"
 
+    "${pkgs.throne}/share/applications/throne.desktop"
+
     # nixpaks
     "${pkgs.nixpaks.librewolf}/share/applications/io.gitlab.librewolf-community.desktop"
     "${pkgs.nixpaks.telegram-desktop}/share/applications/org.telegram.desktop.desktop"
