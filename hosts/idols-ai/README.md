@@ -2,7 +2,7 @@
 
 Related:
 
-- [/nixos-installer/README.md](/nixos-installer/README.md)
+- `docs/install.md`
 
 ## TODOs
 

@@ -95,8 +95,7 @@ See [./secrets](./secrets) for details.
 
 For NixOS:
 
-> To deploy this flake from NixOS's official ISO image (purest installation method), please refer to
-> [./nixos-installer/](./nixos-installer/)
+> To deploy this flake from NixOS's official ISO image, see `docs/install.md`.
 
 ```bash
 # deploy one of the configuration based on the hostname
