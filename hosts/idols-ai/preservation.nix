@@ -146,6 +146,13 @@ in
         # ai agents
         ".claude"
         ".gemini"
+        ".config/opencode"
+        ".config/Throne"
+        ".local/share/opencode"
+        ".local/share/Throne"
+        ".local/state/opencode"
+        ".local/state/Throne"
+        ".cache/opencode"
 
         # nvim
         ".local/share/nvim"
