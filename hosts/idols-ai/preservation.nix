@@ -220,7 +220,6 @@ in
 
         "Games"
         ".steam"
-        ".config/blender"
         ".config/LDtk"
         ".config/heroic"
         ".config/lutris"
@@ -238,7 +237,6 @@ in
         # ======================================
         # Meeting / Remote Desktop / Recording
         # ======================================
-        ".zoom"
         ".config/obs-studio"
         ".config/sunshine"
         ".config/freerdp"
@@ -286,9 +284,6 @@ in
         ".config/pulse"
         ".local/state/wireplumber"
 
-        # Digital Painting
-        ".local/share/krita"
-
         # Japanese IME
         ".config/mozc" # used by fcitx5-mozc
 
@@ -300,14 +295,6 @@ in
       files = [
         {
           file = ".wakatime.cfg";
-          how = "symlink";
-        }
-        {
-          file = ".config/zoomus.conf";
-          how = "symlink";
-        }
-        {
-          file = ".config/zoom.conf";
           how = "symlink";
         }
         {
