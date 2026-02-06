@@ -42,8 +42,9 @@ in
       "/etc/ssh"
       "/etc/nix/inputs"
       "/etc/secureboot" # lanzaboote - secure boot
-      # my secrets
-      "/etc/agenix/"
+      # NOTE: do NOT preserve /etc/agenix.
+      # It's generated from age secrets at activation time and preserving it
+      # can hide the generated files (empty preserved dir gets mounted over /etc/agenix).
 
       "/var/log"
 

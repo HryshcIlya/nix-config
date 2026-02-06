@@ -69,12 +69,11 @@ nvme0n1           259:0    0  1.8T  0 disk
                                             /home/ryan/.config/github-copilot
                                             /home/ryan/.config/freerdp
                                             /home/ryan/.aws
-                                            /etc/ssh
-                                            /etc/secureboot
-                                            /etc/nix/inputs
-                                            /etc/agenix
-                                            /etc/NetworkManager/system-connections
-                                            /etc/machine-id
+                                             /etc/ssh
+                                             /etc/secureboot
+                                             /etc/nix/inputs
+                                             /etc/NetworkManager/system-connections
+                                             /etc/machine-id
                                             /home/ryan/.config/nushell/history.txt
                                             /home/ryan/.wakatime.cfg
                                             /nix/store
