@@ -87,8 +87,8 @@ See [./secrets](./secrets) for details.
 <!-- prettier-ignore -->
 > :red_circle: **IMPORTANT**: **You should NOT deploy this flake directly on your machine :exclamation:
 > It will not succeed.** This flake contains my hardware configuration(such as
-> [hardware-configuration.nix](hosts/idols-ai/hardware-configuration.nix),
-> [Nvidia Support](https://github.com/ryan4yin/nix-config/blob/v0.1.1/hosts/idols-ai/default.nix#L77-L91),
+> [hardware-configuration.nix](hosts/ai/hardware-configuration.nix),
+> [host configuration](hosts/ai/default.nix),
 > etc.) which is not suitable for your hardware, and requires my private secrets repository
 > [ryan4yin/nix-secrets](https://github.com/ryan4yin/nix-config/tree/main/secrets) to deploy. You
 > may use this repo as a reference to build your own configuration.
@@ -99,13 +99,13 @@ For NixOS:
 
 ```bash
 # deploy one of the configuration based on the hostname
-sudo nixos-rebuild switch --flake .#ai-niri
+sudo nixos-rebuild switch --flake .#ai
 
-# Deploy the niri nixosConfiguration by hostname match
-just niri
+# Deploy the nixosConfiguration by hostname match
+just switch
 
 # or we can deploy with details
-just niri debug
+just switch debug
 ```
 
 > [What y'all will need when Nix drives you to drink.](https://www.youtube.com/watch?v=Eni9PPPPBpg)

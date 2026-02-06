@@ -58,7 +58,7 @@ the first switch.
 7. When switching to the full NixOS configuration, override the secrets flake input from USB:
 
    ```bash
-   sudo nixos-rebuild switch --flake ~/nix-config#ai-niri \
+   sudo nixos-rebuild switch --flake ~/nix-config#ai \
      --override-input mysecrets git+file:///mnt/usb/nix-secrets
    ```
 

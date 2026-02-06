@@ -3,14 +3,7 @@
   outputs,
 }:
 let
-  specialExpected = {
-    "ai-niri" = "ai";
-  };
-  specialHostNames = builtins.attrNames specialExpected;
-
-  otherHosts = builtins.removeAttrs outputs.nixosConfigurations specialHostNames;
-  otherHostsNames = builtins.attrNames otherHosts;
-  # other hosts's hostName is the same as the nixosConfigurations name
-  otherExpected = lib.genAttrs otherHostsNames (name: name);
+  hostsNames = builtins.attrNames outputs.nixosConfigurations;
+  expected = lib.genAttrs hostsNames (name: name);
 in
-(specialExpected // otherExpected)
+expected

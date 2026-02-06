@@ -63,7 +63,7 @@ cd nix-config
 ```bash
 sudo_env nix run github:nix-community/disko/latest -- \
   --mode destroy,format,mount \
-  ./hosts/idols-ai/disko.nix
+  ./hosts/ai/disko.nix
 ```
 
 ## 6) Make `~/nix-config` persistent
@@ -128,7 +128,7 @@ sudo_env bash -lc '
   ulimit -n 524288
   exec nixos-install \
     --root /mnt \
-    --flake /mnt/persistent/home/'"$USERNAME"'/nix-config#ai-niri \
+    --flake /mnt/persistent/home/'"$USERNAME"'/nix-config#ai \
     --override-input mysecrets "git+file://'"$SECRETS"'" \
     --no-channel-copy \
     --no-root-password \

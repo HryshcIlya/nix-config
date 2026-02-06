@@ -60,10 +60,10 @@ Use existing hosts as templates. The key files typically include:
 
 ### Examples to Reference
 
-- **Desktop systems**: See `idols-ai/` for gaming/workstation setup
+- **Desktop systems**: See `ai/` for gaming/workstation setup
 
 ## References
 
 [Oshi no Ko 【推しの子】 - Wikipedia](https://en.wikipedia.org/wiki/Oshi_no_Ko):
 
-![](/_img/idols-famaily.webp) ![](/_img/idols-ai.webp)
+![](/_img/idols-famaily.webp)

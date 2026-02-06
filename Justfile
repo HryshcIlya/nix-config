@@ -105,21 +105,13 @@ override-pkgs hash:
 #
 ############################################################################
 
-# Deploy the nixosConfiguration by hostname match
+# Deploy the nixosConfiguration by hostname
 [linux]
 [group('desktop')]
-local mode="default":
+switch mode="default":
   #!/usr/bin/env nu
   use {{utils_nu}} *;
   nixos-switch (hostname) {{mode}}
-
-# Deploy the niri nixosConfiguration by hostname match
-[linux]
-[group('desktop')]
-niri mode="default":
-  #!/usr/bin/env nu
-  use {{utils_nu}} *;
-  nixos-switch $"(hostname)-niri" {{mode}}
 
 # =================================================
 #

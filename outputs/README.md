@@ -64,7 +64,7 @@ All the outputs of this flake are defined here.
 └── x86_64-linux      # All outputs for Linux x86_64
     ├── default.nix
     ├── src           # every host has its own file in this directory
-    │   └── idols-ai.nix
+    │   └── ai.nix
     └── tests         # eval tests
         ├── home-manager
         │   ├── expected.nix

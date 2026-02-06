@@ -21,7 +21,7 @@ let
         "secrets/nixos.nix"
         "modules/nixos/desktop.nix"
         # host specific
-        "hosts/idols-${name}"
+        "hosts/${name}"
         # nixos hardening
         # "hardening/profiles/default.nix"
         "hardening/nixpaks"
@@ -40,7 +40,7 @@ let
         # common
         "home/linux/gui.nix"
         # host specific
-        "hosts/idols-${name}/home.nix"
+        "hosts/${name}/home.nix"
       ])
       ++ [
         {
@@ -62,6 +62,6 @@ let
 in
 {
   nixosConfigurations = {
-    "${name}-niri" = mylib.nixosSystem (modules-niri // args);
+    "${name}" = mylib.nixosSystem (modules-niri // args);
   };
 }

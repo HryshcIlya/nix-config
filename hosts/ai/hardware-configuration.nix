@@ -1,4 +1,4 @@
-# Hardware configuration for idols-ai
+# Hardware configuration for ai
 # This file contains only hardware-specific settings (CPU, kernel, boot loader).
 # Disk partitioning and filesystems are managed by disko.nix
 {
