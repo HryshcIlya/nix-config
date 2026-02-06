@@ -42,14 +42,6 @@ window-rule {
     match title="^Telegram"
     open-on-workspace "3chat"
 }
-window-rule {
-    match app-id="wechat"
-    open-on-workspace "3chat"
-}
-window-rule {
-    match app-id="QQ"
-    open-on-workspace "3chat"
-}
 
 // Gaming applications - open in workspace 4
 window-rule {
@@ -73,11 +65,6 @@ window-rule {
     open-on-workspace "4gaming"
 }
 window-rule {
-    // Run anime games on Linux
-    match app-id="^moe.launcher"
-    open-on-workspace "4gaming"
-}
-window-rule {
     // All *.exe (Windows applications)
     match app-id=".exe$"
     open-on-workspace "4gaming"
@@ -96,9 +83,5 @@ window-rule {
 // Other applications - open in workspace 0
 window-rule {
     match app-id="Clash-verge"
-    open-on-workspace "0other"
-}
-window-rule {
-    match app-id="Zoom Workplace"
     open-on-workspace "0other"
 }

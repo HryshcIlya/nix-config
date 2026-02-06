@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-x64,
   ...
 }:
 # media - control and enjoy audio/video
@@ -18,7 +17,6 @@
     vulkan-tools
     mesa-demos
     amdgpu_top
-    (pkgs-x64.zoom-us)
   ];
 
   programs.mpv = {
