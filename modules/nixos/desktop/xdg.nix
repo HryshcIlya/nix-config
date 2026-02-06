@@ -40,6 +40,8 @@
           "gtk"
           "gnome"
         ];
+
+        "org.freedesktop.impl.portal.Settings" = [ "gnome" ];
       };
     };
 
