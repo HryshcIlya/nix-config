@@ -63,6 +63,7 @@ in
 
       # other data
       "/var/lib/flatpak"
+      "/var/lib/sub-store"
 
       # virtualisation
       "/var/lib/libvirt"
