@@ -35,7 +35,6 @@ modules/
         ├── gaming.nix     # Gaming configuration
         ├── misc.nix       # Miscellaneous desktop settings
         ├── networking/    # Network-related desktop configs
-        │   ├── clash-verge.nix
         │   ├── default.nix
         │   ├── remote-desktop.nix
         │   └── wireshark.nix
