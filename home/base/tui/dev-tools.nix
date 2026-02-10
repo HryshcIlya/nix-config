@@ -27,7 +27,9 @@
     minicom
 
     # ai related
+    llm-agents.amp
     llm-agents.claude-code
+    llm-agents.codex
     llm-agents.opencode
     python313Packages.huggingface-hub # huggingface-cli
 

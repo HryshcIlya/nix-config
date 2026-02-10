@@ -112,7 +112,12 @@
           jdt-language-server
 
           #-- zig
-          zls
+          (zls.overrideAttrs (old: {
+            # nixpkgs unstable regression: ZIG_GLOBAL_CACHE_DIR is initialized in
+            # configurePhase by zig's setup hook, so this must not run in patchPhase.
+            postConfigure = (old.postConfigure or "") + "\n" + (old.postPatch or "");
+            postPatch = "";
+          }))
 
           #-- lua
           stylua

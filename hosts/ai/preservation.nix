@@ -146,7 +146,17 @@ in
         ".antigravity"
 
         # ai agents
+        ".amp"
+        ".config/amp"
+        ".local/share/amp"
+        ".local/state/amp"
+        ".cache/amp"
         ".claude"
+        ".codex"
+        ".config/codex"
+        ".local/share/codex"
+        ".local/state/codex"
+        ".cache/codex"
         ".gemini"
         ".config/opencode"
         ".config/Throne"
