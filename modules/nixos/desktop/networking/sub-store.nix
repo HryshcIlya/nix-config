@@ -3,299 +3,37 @@ let
   apiHost = "127.0.0.1";
   apiPort = 3000;
   frontendPort = 3001;
-
-  geminiSupportedCountries = map lib.strings.trim (
-    builtins.filter (x: x != "") (
-      lib.splitString "\n" ''
-        Albania
-        Algeria
-        American Samoa
-        Andorra
-        Angola
-        Anguilla
-        Antarctica
-        Antigua and Barbuda
-        Argentina
-        Armenia
-        Aruba
-        Australia
-        Austria
-        Azerbaijan
-        The Bahamas
-        Bahrain
-        Bangladesh
-        Barbados
-        Belgium
-        Belize
-        Benin
-        Bermuda
-        Bhutan
-        Bolivia
-        Bosnia and Herzegovina
-        Botswana
-        Brazil
-        British Indian Ocean Territory
-        British Virgin Islands
-        Brunei
-        Bulgaria
-        Burkina Faso
-        Burundi
-        Cabo Verde
-        Cambodia
-        Cameroon
-        Canada
-        Caribbean Netherlands
-        Cayman Islands
-        Central African Republic
-        Chad
-        Chile
-        Christmas Island
-        Cocos (Keeling) Islands
-        Colombia
-        Comoros
-        Cook Islands
-        Costa Rica
-        Côte d'Ivoire
-        Croatia
-        Curaçao
-        Czech Republic
-        Democratic Republic of the Congo
-        Denmark
-        Djibouti
-        Dominica
-        Dominican Republic
-        Ecuador
-        Egypt
-        El Salvador
-        Equatorial Guinea
-        Eritrea
-        Estonia
-        Eswatini
-        Ethiopia
-        Falkland Islands (Islas Malvinas)
-        Faroe Islands
-        Fiji
-        Finland
-        France
-        Gabon
-        The Gambia
-        Georgia
-        Germany
-        Ghana
-        Gibraltar
-        Greece
-        Greenland
-        Grenada
-        Guam
-        Guatemala
-        Guernsey
-        Guinea
-        Guinea-Bissau
-        Guyana
-        Haiti
-        Heard Island and McDonald Islands
-        Honduras
-        Hungary
-        Iceland
-        India
-        Indonesia
-        Iraq
-        Ireland
-        Isle of Man
-        Israel
-        Italy
-        Jamaica
-        Japan
-        Jersey
-        Jordan
-        Kazakhstan
-        Kenya
-        Kiribati
-        Kosovo
-        Kuwait
-        Kyrgyzstan
-        Laos
-        Latvia
-        Lebanon
-        Lesotho
-        Liberia
-        Libya
-        Liechtenstein
-        Lithuania
-        Luxembourg
-        Madagascar
-        Malawi
-        Malaysia
-        Maldives
-        Mali
-        Malta
-        Marshall Islands
-        Mauritania
-        Mauritius
-        Mexico
-        Micronesia
-        Moldova
-        Mongolia
-        Montenegro
-        Montserrat
-        Morocco
-        Mozambique
-        Namibia
-        Nauru
-        Nepal
-        Netherlands
-        New Caledonia
-        New Zealand
-        Nicaragua
-        Niger
-        Nigeria
-        Niue
-        Norfolk Island
-        North Macedonia
-        Northern Mariana Islands
-        Norway
-        Oman
-        Pakistan
-        Palau
-        Palestine
-        Panama
-        Papua New Guinea
-        Paraguay
-        Peru
-        Philippines
-        Pitcairn Islands
-        Poland
-        Portugal
-        Puerto Rico
-        Qatar
-        Republic of Cyprus
-        Republic of the Congo
-        Romania
-        Rwanda
-        Saint Barthélemy
-        Saint Helena, Ascension and Tristan da Cunha
-        Saint Kitts and Nevis
-        Saint Lucia
-        Saint Pierre and Miquelon
-        Saint Vincent and the Grenadines
-        Samoa
-        San Marino
-        São Tomé and Príncipe
-        Saudi Arabia
-        Senegal
-        Serbia
-        Seychelles
-        Sierra Leone
-        Singapore
-        Slovakia
-        Slovenia
-        Solomon Islands
-        Somalia
-        South Africa
-        South Georgia and the South Sandwich Islands
-        South Korea
-        South Sudan
-        Spain
-        Sri Lanka
-        Sudan
-        Suriname
-        Sweden
-        Switzerland
-        Taiwan
-        Tajikistan
-        Tanzania
-        Thailand
-        Timor-Leste
-        Togo
-        Tokelau
-        Tonga
-        Trinidad and Tobago
-        Tunisia
-        Turkmenistan
-        Turks and Caicos Islands
-        Tuvalu
-        Türkiye
-        Uganda
-        Ukraine
-        United Arab Emirates
-        United Kingdom
-        United States
-        United States Minor Outlying Islands
-        Uruguay
-        U.S. Virgin Islands
-        Uzbekistan
-        Vanuatu
-        Vatican City
-        Venezuela
-        Vietnam
-        Wallis and Futuna
-        Western Sahara
-        Yemen
-        Zambia
-        Zimbabwe
-        Åland Islands
-      ''
-    )
-  );
-
-  geminiCountryAliases = [
-    "Cyprus"
-    "Czechia"
-    "Cape Verde"
-    "Cote d Ivoire"
-    "Ivory Coast"
-    "Curacao"
-    "Sao Tome and Principe"
-    "Turkey"
-    "USA"
-    "United States of America"
-    "US Virgin Islands"
+  rfHostBlacklist = [
+    "4vps.su"
+    "Aeza Group"
+    "Beget"
+    "CDNvideo"
+    "Delta"
+    "EdgeCenter"
+    "Miglovets Egor Andreevich"
+    "russia"
+    ".ru"
+    "Selectel"
+    "Timeweb"
+    "VK"
+    "Yandex"
   ];
-
-  geminiCountryFilterScript = ''
-    const normalize = (input) =>
-      String(input ?? "")
-        .toLowerCase()
-        .normalize("NFKD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-z0-9]+/g, " ")
-        .trim();
-
-    const allowedNames = [
-      ...${builtins.toJSON geminiSupportedCountries},
-      ...${builtins.toJSON geminiCountryAliases},
-    ];
-
-    const normalizedAllowed = allowedNames.map(normalize);
-    const normalizedName = normalize($server?.name ?? "");
-
-    return normalizedAllowed.some((country) =>
-      country && normalizedName.includes(country),
-    );
-  '';
+  mkRemoteSub = name: displayName: url: {
+    inherit name displayName url;
+    source = "remote";
+    ignoreFailedRemoteSub = true;
+  };
 
   subscriptions = [
-    {
-      name = "black-vless-rus";
-      displayName = "BLACK_VLESS_RUS";
-      source = "remote";
-      url = "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt";
-      ignoreFailedRemoteSub = true;
-    }
-    {
-      name = "vless-universal";
-      displayName = "vless_universal";
-      source = "remote";
-      url = "https://raw.githubusercontent.com/zieng2/wl/main/vless_universal.txt";
-      ignoreFailedRemoteSub = true;
-    }
-    {
-      name = "black-ss-all-rus";
-      displayName = "BLACK_SS+All_RUS";
-      source = "remote";
-      url = "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_SS+All_RUS.txt";
-      ignoreFailedRemoteSub = true;
-    }
+    (mkRemoteSub "black-vless-rus" "BLACK_VLESS_RUS"
+      "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt"
+    )
+    (mkRemoteSub "vless-universal" "vless_universal"
+      "https://raw.githubusercontent.com/zieng2/wl/main/vless_universal.txt"
+    )
+    (mkRemoteSub "black-ss-all-rus" "BLACK_SS+All_RUS"
+      "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_SS+All_RUS.txt"
+    )
   ];
 
   collections = [
@@ -310,25 +48,29 @@ let
       ignoreFailedRemoteSub = true;
       process = [
         {
-          type = "Type Filter";
-          args = [
-            "vless"
-            "vmess"
-            "trojan"
-            "ss"
-            "hysteria"
-            "hysteria2"
-            "tuic"
-            "wireguard"
-            "socks5"
-            "http"
-          ];
-        }
-        {
           type = "Script Filter";
           args = {
             mode = "code";
-            content = geminiCountryFilterScript;
+            content = ''
+              const keywords = ${builtins.toJSON rfHostBlacklist}.map((v) =>
+                String(v).toLowerCase()
+              );
+              const fields = [
+                $server?.name,
+                $server?.server,
+                $server?.sni,
+                $server?.servername,
+                $server?.host,
+                $server?.["ws-opts"]?.headers?.Host,
+                $server?.["plugin-opts"]?.host,
+              ];
+              const haystack = fields
+                .filter((v) => typeof v === "string" && v.length > 0)
+                .join(" ")
+                .toLowerCase();
+              const isBlocked = keywords.some((k) => haystack.includes(k));
+              return !isBlocked;
+            '';
           };
         }
         {
@@ -354,6 +96,18 @@ let
               normalize($server?.tls?.reality, "short_id");
               normalize($server?.["reality-opts"], "short-id");
               normalize($server?.["reality-opts"], "short_id");
+            '';
+          };
+        }
+        {
+          type = "Script Operator";
+          args = {
+            mode = "code";
+            content = ''
+              const hasUDP = Object.prototype.hasOwnProperty.call($server ?? {}, "udp");
+              if (!hasUDP) {
+                $server.udp = true;
+              }
             '';
           };
         }
